@@ -11,7 +11,8 @@ iptables -t nat -X
 iptables -t mangle -Z
 iptables -t mangle -F
 iptables -t mangle -X
-
+#Liberando a Loopback
+iptables -A INPUT -i lo -j ACCEPT # adiciona regra na chain INPUT para liberar a loopback
 #Proteção contra ping, SYN Cookie, IP Spoofing e proteções do kernel
 echo 1 > /proc/sys/net/ipv4/tcp_syncookies #Syn Flood-DoS
 echo 1 > /proc/sys/net/ipv4/conf/all/rp_filter #Ip Spoofing
